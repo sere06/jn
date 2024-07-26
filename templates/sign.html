@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todo_login</title>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li class="message">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    <link rel="stylesheet" href="{{url_for('static' ,filename='log.css')}}">
+  </head>
+  <body   class="intro-header" style="background-image: url('static/imges/login_wallpaper.jpg')">
+    <img src="static\images\locked.png" alt="logo" id="logo" />
+    
+    <form action="/signup" method="post">
+      <div class="container">
+        <p>SIGN UP</p>
+        <label><strong>USERNAME:</strong> </label><input
+          type="text"
+          name="username"
+          id="user"
+          required
+        /><br />
+        <label><strong>PASSWORD:</strong></label><input
+          type="password"
+          name="pass"
+          id="password"
+          aria-required="true"
+        /><br />
+        <button type="submit"><strong>SIGN-up</strong></button> 
+        <!-- <p id="msg2">Don't have account <a href="/signup">SIGN UP</a></p> -->
+      </div>
+   
+    
+  </form>
+  </body>
+</html>

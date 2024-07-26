@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic-tac-toe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <!-- <script type="text/javascript" src = "{{ url_for('static', filename='jscript/form.js') }}">  </script> -->
+    
+  
+
+</head>
+<body  >
+    <main >
+        
+   <a href="/"> <h1>Tic-Tac-Toe</h1></a>
+   
+   <form action="/" method="post">
+    <input name="score_x" type="number" id="scorex" class="hide"  value="{{TTT.X}}"></input>
+    <input name="score_o" type="number" id="scoreo" class="hide" value="{{TTT.O}}"></input>
+    <div class="msgcontainer hide"> <p id="msg",class="hide" visibility="hidden">WINNER IS</p></div>
+    
+    <div id="target">
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+        <button class="btn"></button>
+    </div>
+    <button class="reset btn2 btnr">reset</button>
+    <button class="save btn2  btns">SAVE</button>
+    
+</form>
+
+<a href="/score"><button class="Score btn2">SCORE</button></a>
+</main>
+
+<script>
+console.log("entered")
+let button=document.querySelectorAll('.btn');
+let turn='O';
+let c=0;
+let xscore=document.querySelector('#scorex');
+let yscore=document.querySelector('#scoreo');
+let xc=parseInt(xscore.value);
+let oc=parseInt(yscore.value);
+
+const h1=document.querySelector('h1');
+// h1.innerText='djsdfkjsd'
+const btn=document.querySelector('.reset');
+// btn.innerText='reload'
+const btn2=document.querySelector('.save')
+const winnerset=[
+    [0,1,2],[3,4,5],[6,7,8],[0,4,8],[2,4,6],[0,3,6],[1,4,7],[2,5,8]
+];
+
+function stop (){
+button.forEach((b)=>{
+    b.disabled=true;});
+}
+button.forEach((b) => {
+    b.addEventListener('click',()=>{
+        c++;
+        if(turn==='O'){
+            b.innerText='O';
+            turn='X';
+        } 
+        else{
+            b.innerText='X';
+            turn='O';
+        }
+        r=findwin(c);
+        // winscore();
+        
+        
+        b.disabled=true;
+        
+    });   
+});
+btn.addEventListener('click',()=>{
+  resetf(); 
+});
+
+function findwin(c){
+   
+     winnerset.forEach((ele)=>{
+        let res;
+
+        if(button[ele[0]].innerText!=''&& button[ele[1]].innerText!='' && button[ele[2]].innerText!=''){
+                if(button[ele[0]].innerText===button[ele[1]].innerText &&button[ele[0]].innerText ===button[ele[2]].innerText){
+                // console.log("winner is ",ele[0]);
+                res=ele[0];
+                
+                console.log("after stop")
+                // promt("sana")
+                let e=document.createElement("p");
+                h1.append(e);
+                e.setAttribute("class","win")
+                // e.style.classList.remove('win');
+                let temp=document.querySelector('.win');
+                temp.style.color="pink";
+                temp.innerText="winner is "+button[ele[0]].innerText;
+                let tt=document.querySelector('.hide');
+                tt.innerText=button[ele[0]];
+                r=button[ele[0]].innerText;
+                winscore(r);
+                stop();
+                return button[ele[0]];
+              
+            }
+            else{
+                if (c%9===0){
+                let e=document.createElement("p");
+                h1.append(e);
+                e.setAttribute("class","win")
+                // e.style.classList.remove('win');
+
+                try{let temp=document.querySelector('.win');
+                temp.style.color="pink";
+                temp.innerText="MATCH DRAW ";}
+                catch(err){
+                    prompt(err);
+                }
+                
+            }
+            return ;
+        }
+    }});
+    return ;
+    
+   
+}
+                
+
+
+function resetf(){
+    c=0;
+    turn="O";
+    button.forEach((b)=>{
+        b.disabled=false;
+        b.innerText="";
+        
+       
+        
+        
+    });
+    let temp=document.querySelector('.win');
+    temp.remove();
+    
+    
+
+}
+function winscore(w) {
+    let xscore=document.querySelector('#scorex');
+    let yscore=document.querySelector('#scoreo');
+    console.log(w);
+    console.log("entered winscore");
+   
+    if (w=='X'){
+        console.log("enterd if");
+        xc=xc+1;
+        oc=oc;
+        // xscore.classList.remove('hide')
+        // yscore.classList.remove('hide')
+        xscore.value=xc;
+        yscore.value=oc;
+        // console.log(xscore.value)
+        
+        
+
+    }
+    if(w=='O'){
+        oc=oc+1;
+        xc=xc;
+        // xscore.classList.remove('hide')
+        // yscore.classList.remove('hide')
+        xscore.value=xc;
+        yscore.value=oc;
+    }  
+    
+}
+ 
+</script>
+
+    
+</body>
+</html>

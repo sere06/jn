@@ -1,0 +1,7 @@
+/* #col,thead{
+    margin-right: 100px;
+} */
+table{
+    width:100%;
+    border:2px solid black;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCORE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='second.css') }}">
+</head>
+<body>
+    <h1>SCORE</h1>
+   
+    <table class="table">
+    
+            <thead id="col">
+              <tr>
+                <th scope="col" >SNO</th>
+                <th scope="col" >X</th>
+                <th scope="col" >O</th>
+                <th scope="col" >TOTAL</th>
+              </tr>
+            </thead>
+            {% if TTT %}
+            <tbody>
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>{{TTT.X}}</td>
+                <td>{{TTT.O}}</td>
+                <td>{{TTT.TOTAL}}
+                </tr></td>
+              </tr>
+              <tr>
+                
+            </tbody>
+            {% endif %}
+        
+          </table>
+      
+</body>
+</html>
